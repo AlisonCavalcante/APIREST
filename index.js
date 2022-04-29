@@ -16,9 +16,9 @@ const mongoose = require("mongoose");
 app.use(express.json());
 
 // rotas da API
-const pessoaRouutes = require('./routes/pessoaRoutes');
+const pessoaRoutes = require('./routes/pessoaRoutes');
 
-app.use('/pessoa', pessoaRouutes);
+app.use('/pessoa', pessoaRoutes);
 
 
 // rota inicial
