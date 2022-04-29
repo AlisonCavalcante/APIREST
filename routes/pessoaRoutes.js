@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Pessoa = require("../models/Pessoa");
 
+// create
 router.post("/", async (req, res) => {
     // tratar o corpo da requisicao
     const { nome, salario, aprovado } = req.body;
@@ -28,5 +29,16 @@ router.post("/", async (req, res) => {
       res.status(500).json({ error: error });
     }
   });
+
+  // read
+
+  router.get('/', async (req, res) => {
+      try {
+        const pessoas = await Pessoa.find();
+        res.status(200).json(pessoas);
+      } catch (error) {
+        res.status(500).json({ error: error });
+      }
+  })
 
   module.exports = router;
