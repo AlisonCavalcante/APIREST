@@ -4,17 +4,17 @@ const Pessoa = require("../models/Pessoa");
 // create
 router.post("/", async (req, res) => {
   // tratar o corpo da requisicao
-  const { nome, salario, aprovado } = req.body;
+  const { email, senha, aprovado } = req.body;
 
   console.log(req.body);
-  if (!nome) {
-    res.status(422).json({ erro: "O nome é Obrigatório" });
+  if (!email) {
+    res.status(422).json({ erro: "O email é Obrigatório" });
     return;
   }
 
   const pessoa = {
-    nome,
-    salario,
+    email,
+    senha,
     aprovado,
   };
 
@@ -43,12 +43,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:email", async (req, res) => {
   // extrair dados da url = req.params
-  const id = req.params.id;
+  const email = req.params.email;
   try {
     // recebe uma pessoa específica, filtrando por meio de um parâmetro
-    const pessoa = await Pessoa.findOne({ _id: id });
+    const pessoa = await Pessoa.findOne({ email: email });
 
     if (!pessoa) {
       res.status(422).json({ mensagem: "O usuário não foi encontrado" });
@@ -66,11 +66,11 @@ router.get("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const { nome, salario, aprovado } = req.body;
+  const { email, senha, aprovado } = req.body;
 
   const pessoa = {
-    nome,
-    salario,
+    email,
+    senha,
     aprovado,
   };
 

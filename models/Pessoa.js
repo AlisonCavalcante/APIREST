@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 // criando a collection no bd
 const Pessoa = mongoose.model('Pessoa',{
-    nome: String,
-    salario: Number,
+    email: String,
+    senha: String,
     aprovado: Boolean,
 })
 

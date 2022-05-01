@@ -1,6 +1,7 @@
 // import
 require('dotenv').config();
 const express = require("express");
+const cors = require('cors');
 // inicializando o express em forma de função
 const app = express();
 const mongoose = require("mongoose");
@@ -14,13 +15,22 @@ const mongoose = require("mongoose");
 //     extended: true,
 //   })
 // );
+
 app.use(express.json());
+
+app.use((req, res, next) =>{
+  res.header("Access-Control-Allow-Origin", "*");
+  app.use(cors());
+  next();
+});
+
 
 // rotas da API
 const pessoaRoutes = require('./routes/pessoaRoutes');
+const departamentoRoutes = require('./routes/departamentoRoutes');
 
 app.use('/pessoa', pessoaRoutes);
-
+app.use('/departamento', departamentoRoutes);
 
 // rota inicial
 app.get("/", (requisicao, response) => {
@@ -37,7 +47,7 @@ mongoose
   ) // promisse
   .then(() => {
     console.log("Conectamos ao mongoDB");
-    app.listen(4001);
+    app.listen(4005);
   })
   .catch((err) => console.log(err));
 
