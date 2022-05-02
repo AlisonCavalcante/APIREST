@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   
       res
         .status(201)
-        .json({ mensagem: "Departamento Inserido no Sistema com Sucesso!" });
+        .json(departamento);
     } catch (error) {
       // atribuindo a um erro de servidor
       res.status(500).json({ error: error });
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
 
   router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-  
+
     const departamento = await Departamento.findOne({ _id: id });
   
     // verificando se o usuário existe
