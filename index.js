@@ -20,6 +20,7 @@ app.use(express.json());
 
 app.use((req, res, next) =>{
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   app.use(cors());
   next();
 });
@@ -28,9 +29,12 @@ app.use((req, res, next) =>{
 // rotas da API
 const pessoaRoutes = require('./routes/pessoaRoutes');
 const departamentoRoutes = require('./routes/departamentoRoutes');
+const funcionarioRoutes = require('./routes/funcionarioRoutes');
+
 
 app.use('/pessoa', pessoaRoutes);
 app.use('/departamento', departamentoRoutes);
+app.use('/funcionario', funcionarioRoutes);
 
 // rota inicial
 app.get("/", (requisicao, response) => {
