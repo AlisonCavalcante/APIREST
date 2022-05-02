@@ -39,6 +39,25 @@ router.post("/", async (req, res) => {
     }
   });
 
+  router.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+  
+    const departamento = await Departamento.findOne({ _id: id });
+  
+    // verificando se o usuário existe
+    if (!departamento) {
+      res.status(422).json({ mensagem: "O departmento não foi encontrado" });
+      return;
+    }
+  
+    try {
+      await Departamento.deleteOne({ _id: id });
+  
+      res.status(200).json({ mensagem: "Departamento removido com sucesso" });
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  });
 
   module.exports = router;
 
