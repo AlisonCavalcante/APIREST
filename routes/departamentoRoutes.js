@@ -47,12 +47,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+
 router.patch("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const { nome, telefone } = req.body;
-
+  const { _id ,nome, telefone } = req.body;
+ 
   const departamento = {
+    _id,
     nome,
     telefone,
   };
