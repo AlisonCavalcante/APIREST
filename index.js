@@ -31,11 +31,15 @@ app.use((req, res, next) =>{
 const pessoaRoutes = require('./routes/pessoaRoutes');
 const departamentoRoutes = require('./routes/departamentoRoutes');
 const funcionarioRoutes = require('./routes/funcionarioRoutes');
+const movimentacaoRoutes = require('./routes/movimentacaoRoutes');
+const requisicaoRoutes = require('./routes/requisicaoRoutes');
 
 
 app.use('/pessoa', pessoaRoutes);
 app.use('/departamento', departamentoRoutes);
 app.use('/funcionario', funcionarioRoutes);
+app.use('/movimentacao', movimentacaoRoutes);
+app.use('/requisicao', requisicaoRoutes);
 
 // rota inicial
 app.get("/", (requisicao, response) => {

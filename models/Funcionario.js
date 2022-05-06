@@ -1,13 +1,13 @@
-const moongose = require('mongoose');
-var Schema = moongose.Schema;
+const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 const funcionarioSchema = new Schema({
   nome: String,
   email: String,
   funcao: String,
   ultimoAcesso: String,
-  departamentoId: {type:  moongose.Schema.Types.ObjectId, ref: 'Departamento'}
+  departamentoId: {type:  mongoose.Schema.Types.ObjectId, ref: 'Departamento'}
 }, {versionKey: false});
 
-module.exports = moongose.model('Funcionario', funcionarioSchema);
+module.exports = mongoose.model('Funcionario', funcionarioSchema);
 
